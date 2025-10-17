@@ -11,12 +11,12 @@ const starContainerstyle = {
   gap: "4px",
 };
 
-const textStyle = {
-  lineHieght: 1,
-  margin: "0",
-};
-
-const Star = ({ maxRating = 5 }) => {
+const Star = ({ maxRating = 5, color = "#43d643" }) => {
+  const textStyle = {
+    lineHieght: 1,
+    margin: "0",
+    color,
+  };
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
 
@@ -38,6 +38,7 @@ const Star = ({ maxRating = 5 }) => {
             onHoverIn={() => handleHoverRating(i + 1)}
             onHoverOut={() => handleHoverRating(i + 1)}
             full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
+            color={color}
           />
         ))}
         <p style={textStyle}>{tempRating || rating || ""}</p>
@@ -48,14 +49,14 @@ const Star = ({ maxRating = 5 }) => {
 
 export default Star;
 
-const starRatingStyle = {
-  hieght: "16px",
-  width: "16px",
-  display: "block",
-  cursor: "pointer",
-};
+export const StarRating = ({ onRate, full, onHoverIn, onHoverOut, color }) => {
+  const starRatingStyle = {
+    hieght: "16px",
+    width: "16px",
+    display: "block",
+    cursor: "pointer",
+  };
 
-export const StarRating = ({ onRate, full, onHoverIn, onHoverOut }) => {
   return (
     <span
       style={starRatingStyle}
@@ -68,8 +69,8 @@ export const StarRating = ({ onRate, full, onHoverIn, onHoverOut }) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
-          fill="#000"
-          stroke="#000"
+          fill={color}
+          stroke={color}
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
@@ -78,7 +79,7 @@ export const StarRating = ({ onRate, full, onHoverIn, onHoverOut }) => {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="#000"
+          stroke={color}
         >
           <path
             strokeLinecap="round"
