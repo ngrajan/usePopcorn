@@ -15,6 +15,7 @@ const Star = ({ maxRating = 5, color = "#43d643" }) => {
   const textStyle = {
     lineHieght: 1,
     margin: "0",
+    size: "5",
     color,
   };
   const [rating, setRating] = useState(0);
